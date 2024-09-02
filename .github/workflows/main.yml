@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   deploy_lambda:
@@ -19,10 +19,14 @@ jobs:
         run: |
           npm ci
      
-      - name: deploy
+      - name: Build and zip
         env:
           CI: true
         run: |
           npx ncc build index.ts
-          Compress-Archive -Path .\dist\* -DestinationPath .\deploy.zip
-          # aws cli - deploy code
+          zip -r deploy.zip dist/
+
+      # Add AWS CLI commands here to deploy the code
+      # - name: Deploy to AWS Lambda
+      #   run: |
+      #     aws lambda update-function-code --function-name your_lambda_function --zip-file fileb://deploy.zip
