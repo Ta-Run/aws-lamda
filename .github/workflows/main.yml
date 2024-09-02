@@ -18,4 +18,16 @@ jobs:
           CI: true
         run: |
           npm ci
+     
+      - name: deploy
+        env:
+          CI: true
+        run: |
+          npx ncc build index.ts
+          zip -j deploy.zip ./dist/*
+          # Compress-Archive -Path .\dist\* -DestinationPath .\deploy.zip
+          # aws cli - deploy code
+        
       
+
+   
