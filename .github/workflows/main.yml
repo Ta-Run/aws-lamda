@@ -26,7 +26,3 @@ jobs:
           npx ncc build index.ts
           Compress-Archive -Path .\dist\* -DestinationPath .\deploy.zip
           # aws cli - deploy code
-        
-      
-
-   
