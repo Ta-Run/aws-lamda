@@ -24,8 +24,7 @@ jobs:
           CI: true
         run: |
           npx ncc build index.ts
-          zip -r deploy.zip dist/
-
+          Compress-Archive -Path .\dist\* -DestinationPath deploy.zip
       # Add AWS CLI commands here to deploy the code
       # - name: Deploy to AWS Lambda
       #   run: |
